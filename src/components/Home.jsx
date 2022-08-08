@@ -9,7 +9,7 @@ const Home = () => {
                 <DarkModeToogle />
             </div>
 
-            <div className='flex flex-col items-center justify-center h-screen'>
+            <div className='flex flex-col items-center justify-center h-[80vh]'>
                 <div className='mb-6'>
                     <img
                         src='https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png'

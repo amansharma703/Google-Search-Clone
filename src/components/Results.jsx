@@ -33,7 +33,7 @@ export const Results = () => {
                             <a href={link} target='_blank' rel='noreferrer'>
                                 <p className='text-xs'>{link.length > 30 ? link.substring(0, 30) : link}</p>
                                 <p className='text-xl hover:underline dark:text-blue-300 text-blue-700  '>{title}</p>
-                                <p className='text-sm  '>{description}</p>
+                                <p className='text-sm  break-words'>{description}</p>
                             </a>
                         </div>
                     ))}
@@ -59,7 +59,7 @@ export const Results = () => {
                                 <p className='text-lg dark:text-blue-300 text-blue-700'>{title}</p>
                             </a>
                             <div className='flex gap-4'>
-                                <a href={source?.href} target='_blank' rel='noreferrer' className='hover:underline hover:text-blue-300'>
+                                <a href={source?.href} target='_blank' rel='noreferrer' className='hover:underline hover:text-blue-300 break-words'>
                                     {" "}
                                     {source?.href}
                                 </a>
