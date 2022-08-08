@@ -14,7 +14,7 @@ export const Results = () => {
             if (location.pathname === "/videos") {
                 getResults(`/search/q=${searchTerm} videos`);
             } else {
-                getResults(`${location.pathname}/q=${searchTerm}`);
+                getResults(`${location.pathname}/q=${searchTerm}&num=40`);
             }
         }
     }, [searchTerm, location.pathname]);
@@ -24,18 +24,22 @@ export const Results = () => {
     switch (location.pathname) {
         case "/search":
             return (
-                <div className='sm:px-56 flex flex-wrap justify-between space-y-6'>
-                    {results?.results?.map(({ link, title }, index) => (
-                        <div key={index} className='md:w-2/5 w-full'>
+                <div className='sm:px-56 flex flex-col justify-between space-y-6 pt-3'>
+                    <p>
+                        About {results.total} results ({String(results.ts).slice(0, 3)} seconds)
+                    </p>
+                    {results?.results?.map(({ link, title, description }, index) => (
+                        <div key={index} className=' w-full'>
                             <a href={link} target='_blank' rel='noreferrer'>
-                                <p className='text-sm'>{link.length > 30 ? link.substring(0, 30) : link}</p>
-                                <p className='text-lg hover:underline dark:text-blue-300 text-blue-700  '>{title}</p>
+                                <p className='text-xs'>{link.length > 30 ? link.substring(0, 30) : link}</p>
+                                <p className='text-xl hover:underline dark:text-blue-300 text-blue-700  '>{title}</p>
+                                <p className='text-sm  '>{description}</p>
                             </a>
                         </div>
                     ))}
                 </div>
             );
-        case "/images":
+        case "/image":
             return (
                 <div className='flex flex-wrap justify-center items-center'>
                     {results?.image_results?.map(({ image, link: { href, title } }, index) => (
@@ -48,9 +52,9 @@ export const Results = () => {
             );
         case "/news":
             return (
-                <div className='sm:px-56 flex flex-wrap justify-between items-center space-y-6'>
+                <div className='sm:px-56 flex flex-col justify-between space-y-6 pt-3'>
                     {results?.entries?.map(({ id, links, source, title }) => (
-                        <div key={id} className='md:w-2/5 w-full '>
+                        <div key={id} className=' w-full '>
                             <a href={links?.[0].href} target='_blank' rel='noreferrer ' className='hover:underline '>
                                 <p className='text-lg dark:text-blue-300 text-blue-700'>{title}</p>
                             </a>
@@ -64,14 +68,21 @@ export const Results = () => {
                     ))}
                 </div>
             );
-        case "/videos":
+        case "/video":
             return (
-                <div className='flex flex-wrap '>
-                    {results?.results?.map((video, index) => (
-                        <div key={index} className='p-2'>
-                            <ReactPlayer url={video.additional_links?.[0].href} controls width='355px' height='200px' />
-                        </div>
-                    ))}
+                <div className='px-14 pt-4'>
+                    <p>
+                        About {results.total} results ({String(results.ts).slice(0, 3)} seconds)
+                    </p>
+                    <div className=' grid grid-cols-3 gap-3'>
+                        {results?.results?.map((video, index) => (
+                            <div key={index} className='p-2'>
+                                <p className='text-xs'>{video.link.length > 30 ? video.link.substring(0, 30) : video.link}</p>
+                                <p className='text-lg hover:underline dark:text-blue-300 text-blue-700  '>{video.title.slice(0, 40)}</p>
+                                <ReactPlayer url={video.additional_links?.[0].href} controls width='355px' height='200px' />
+                            </div>
+                        ))}
+                    </div>
                 </div>
             );
         default:

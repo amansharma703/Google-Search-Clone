@@ -4,16 +4,16 @@ import { Oval } from "react-loader-spinner";
 export const Loading = () => (
     <div className='flex justify-center items-center '>
         <Oval
-            height={40}
-            width={40}
-            color='#4fa94d'
+            height={30}
+            width={30}
+            color='#5C8AF0'
             wrapperStyle={{}}
             wrapperClass=''
             visible={true}
             ariaLabel='oval-loading'
-            secondaryColor='#4fa94d'
-            strokeWidth={3}
-            strokeWidthSecondary={3}
+            secondaryColor='#5C8AF0'
+            strokeWidth={4}
+            strokeWidthSecondary={4}
         />
     </div>
 );

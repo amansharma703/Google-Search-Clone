@@ -11,8 +11,6 @@ export const StateContextProvider = ({ children }) => {
     const getResults = async (url) => {
         setLoading(true);
 
-        console.log(`${baseUrl}${url}`);
-
         const res = await fetch(`${baseUrl}${url}`, {
             method: "GET",
             headers: {
@@ -23,7 +21,6 @@ export const StateContextProvider = ({ children }) => {
 
         const data = await res.json();
 
-        console.log("🚀 ~ file: StateContextProvider.js ~ line 23 ~ getResults ~ dḁta", data);
         setResults(data);
         setLoading(false);
     };
