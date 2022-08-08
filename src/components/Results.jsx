@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import ReactPlayer from "react-player";
 
 import { useStateContext } from "../contexts/StateContextProvider";
-import { Loading } from "./Loading";
+import { Loading } from "../utils/Loading";
 
 export const Results = () => {
     const { results, loading, getResults, searchTerm } = useStateContext();
@@ -24,7 +24,7 @@ export const Results = () => {
     switch (location.pathname) {
         case "/search":
             return (
-                <div className='sm:px-56 flex flex-col justify-between space-y-6 pt-3'>
+                <div className='lg:px-56 flex flex-col justify-between space-y-6 p-3 md:px-10'>
                     <p>
                         About {results.total} results ({String(results.ts).slice(0, 3)} seconds)
                     </p>
@@ -41,7 +41,7 @@ export const Results = () => {
             );
         case "/image":
             return (
-                <div className='flex flex-wrap justify-center items-center'>
+                <div className='flex flex-wrap justify-center items-center p-3 '>
                     {results?.image_results?.map(({ image, link: { href, title } }, index) => (
                         <a href={href} target='_blank' key={index} rel='noreferrer' className='sm:p-3 p-5'>
                             <img src={image?.src} alt={title} loading='lazy' />
@@ -52,7 +52,7 @@ export const Results = () => {
             );
         case "/news":
             return (
-                <div className='sm:px-56 flex flex-col justify-between space-y-6 pt-3'>
+                <div className='lg:px-56 flex flex-col justify-between space-y-6  p-3 md:px-10'>
                     {results?.entries?.map(({ id, links, source, title }) => (
                         <div key={id} className=' w-full '>
                             <a href={links?.[0].href} target='_blank' rel='noreferrer ' className='hover:underline '>
@@ -70,11 +70,11 @@ export const Results = () => {
             );
         case "/video":
             return (
-                <div className='px-14 pt-4'>
+                <div className='px-10 py-3'>
                     <p>
                         About {results.total} results ({String(results.ts).slice(0, 3)} seconds)
                     </p>
-                    <div className=' grid grid-cols-3 gap-3'>
+                    <div className='flex  flex-wrap lg:grid lg:grid-cols-3 gap-3'>
                         {results?.results?.map((video, index) => (
                             <div key={index} className='p-2'>
                                 <p className='text-xs'>{video.link.length > 30 ? video.link.substring(0, 30) : video.link}</p>

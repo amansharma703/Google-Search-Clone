@@ -7,6 +7,7 @@ export const StateContextProvider = ({ children }) => {
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
+    const [darkTheme, setDarkTheme] = useState(false);
 
     const getResults = async (url) => {
         setLoading(true);
@@ -25,7 +26,11 @@ export const StateContextProvider = ({ children }) => {
         setLoading(false);
     };
 
-    return <StateContext.Provider value={{ getResults, results, searchTerm, setSearchTerm, loading }}>{children}</StateContext.Provider>;
+    return (
+        <StateContext.Provider value={{ getResults, results, searchTerm, setSearchTerm, loading, darkTheme, setDarkTheme }}>
+            {children}
+        </StateContext.Provider>
+    );
 };
 
 export const useStateContext = () => useContext(StateContext);

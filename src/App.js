@@ -1,20 +1,20 @@
-import React, { useState } from "react";
-
+import React from "react";
 import { Footer } from "./components/Footer";
 import { Navbar } from "./components/Navbar";
 import AppRoutes from "./routes";
 import { useLocation } from "react-router-dom";
+import { useStateContext } from "./contexts/StateContextProvider";
 
 const App = () => {
-    const [darkTheme, setDarkTheme] = useState(false);
     const location = useLocation();
+    const { darkTheme } = useStateContext();
 
     return (
         <div className={darkTheme ? "dark" : ""}>
-            <div className='dark:bg-gray-900 bg-gray-100 dark:text-gray-200 black min-h-screen'>
-                {!(location.pathname === "/") && <Navbar setDarkTheme={setDarkTheme} darkTheme={darkTheme} />}
+            <div className='dark:bg-gray-900  dark:text-gray-200 black min-h-screen flex flex-col '>
+                {!(location.pathname === "/") && <Navbar />}
                 <AppRoutes />
-                {!(location.pathname === "/") && <Footer />}
+                <Footer />
             </div>
         </div>
     );

@@ -2,7 +2,7 @@ import React from "react";
 import { Oval } from "react-loader-spinner";
 
 export const Loading = () => (
-    <div className='flex justify-center items-center '>
+    <div className='flex justify-center items-center my-10 h-3/6'>
         <Oval
             height={30}
             width={30}

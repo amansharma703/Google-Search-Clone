@@ -1,13 +1,11 @@
 import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "../components/Home";
 
 import { Results } from "../components/Results";
 
 const AppRoutes = () => (
     <Routes>
-        {/* <Route path='/' element={<Navigate to='/search' replace />} /> */}
-
         <Route exact path='/' element={<Home />} />
 
         <Route path='/search' element={<Results />} />
