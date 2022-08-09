@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useDebounce } from "use-debounce";
 import { useNavigate } from "react-router-dom";
 import { useStateContext } from "../contexts/StateContextProvider";
 import { AiOutlineClose } from "react-icons/ai";
 import { BiMicrophone } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useLocation } from "react-router-dom";
+import useDebounce from "../utils/useDebounce";
 
 export const Search = ({ isHomePageSearch = false }) => {
     const { searchTerm, setSearchTerm } = useStateContext();
     const [text, setText] = useState(searchTerm);
-    const [debouncedValue] = useDebounce(text, 1000);
+    const debouncedValue = useDebounce(text, 1000);
+
     const location = useLocation();
 
     useEffect(() => {
@@ -19,7 +20,7 @@ export const Search = ({ isHomePageSearch = false }) => {
 
     useEffect(() => {
         if (debouncedValue) setSearchTerm(debouncedValue);
-    }, [debouncedValue]);
+    }, [debouncedValue, setSearchTerm]);
 
     let navigate = useNavigate();
     const routeChange = () => {
